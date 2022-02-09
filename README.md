@@ -1,8 +1,6 @@
 # Mubisys
 
-# Teste vaga Dev FullStack PHP
-<br>
-<br>
+<br> Teste vaga Dev FullStack PHP
 
 # Objetivos
 
