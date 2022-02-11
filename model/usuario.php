@@ -39,6 +39,45 @@ class Usuario {
 
     }
 
+    public function listar(){
+        $sqlListarUsuario = "SELECT id, nome, email FROM usuario;";
+    
+        $result = $this->conn->prepare($sqlListarUsuario);
+        $result->execute();
+    
+        if($result->rowCount()>0){
+    
+          $return_arr = array(
+            "code" => 200,
+            "message" => "Usuario(s) encontrado(s) com sucesso.",
+            "data" => array()
+          );
+    
+          while ($row = $result->fetch(PDO::FETCH_ASSOC))
+          {
+            extract($row);
+    
+            $return_item = array(
+              "id" => $id,
+              "nome" => $nome,
+              "email" => $email,
+              "cpf" => $cpf
+            );
+            
+            array_push($return_arr["data"], $return_item);
+          }
+        } else {
+          $return_arr = array(
+              "code" => 404,
+              "message" => "OPS! Não encontramos nenhum usuario.",
+              "data" => array()
+          );
+        }
+    
+        return $return_arr;
+    
+      }
+
     public function geraToken($dadosUsuario) {
 
         $payload = json_encode($dadosUsuario);
