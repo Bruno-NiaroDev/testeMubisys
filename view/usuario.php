@@ -1,3 +1,20 @@
+<?php 
+    session_start();
+
+    if(!isset($_SESSION['dadosUsuario'])){
+        header('Location: ../view/login.php');
+    }
+
+    include '../database/config.php';
+    include '../model/usuario.php';
+
+    $database = new Database;
+
+    $db = $database->getConnection();
+
+    $usuario = new Usuario($db);
+    $listaUsuarios = $usuario->listar();
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +25,11 @@
     <?php include "../assets/css/cssInclude.php"; ?>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-info navbar-dark">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <span class="navbar-brand">Teste do Bruno</span>
-            </li>
-        </ul>
+    <nav class="navbar navbar-light bg-info navStyle">
+        <span class="navbar-brand">Bem Vindo <b><?php echo $_SESSION['dadosUsuario']['nome']; ?></b></span>
+        <div class="form-inline">
+            <a href="../index.php" ><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </div>
     </nav>
     <div class="container">
         <br>
@@ -23,24 +39,43 @@
         <div class="alert alert-success" id="alertSuccess" style="display: none">
             <strong>Parabens!</strong> <span id="msgSucess"></span>
         </div>
-        <h2>Usuários</h2>
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Consulta de Usuários</h2>
+            </div>
+            <div class="col-sm-4">
+                <a href="formUsuario.php" class="btn btn-primary btn-block"><i class="fa-solid fa-user-plus"></i> Novo Usuário</a>
+            </div>
+        </div>
+        
         <table class="table">
             <thead class="thead-light">
                 <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>-</th>
+                <th><i class="fa-solid fa-user-large"></i> Nome</th>
+                <th><i class="fa-solid fa-envelope-open-text"></i> Email</th>
+                <th> <i class="fa-solid fa-pen-to-square"></i> </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Bruno Araujo</td>
-                    <td>bruno.absilva3@gmail.com</td>
-                    <td> 
-                    <a href="formUsuario.php?id=123">Ver</a>
-                    </td>
-                </tr>
-
+                <?php if($listaUsuarios['code'] != 200) { ?>
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center text-center">
+                        <div class="col-md-10">
+                            <h1 class="mb-2">
+                            <?php echo $listaUsuarios['message']; ?>
+                            </h1>
+                        </div>
+                        </div>
+                    </div>
+                <?php } else { foreach($listaUsuarios['data'] as $usuario ) { ?>
+                    <tr <?php echo $_SESSION['dadosUsuario']['id'] == $usuario['id'] ? 'class="statusLogado"' : '' ?>>
+                        <td><?php echo $usuario['nome'] ?></td>
+                        <td><?php echo $usuario['email'] ?></td>
+                        <td> 
+                        <a href="formUsuario.php?id=<?php echo $usuario['id'] ?>">Ver</a>
+                        </td>
+                    </tr>
+                <?php } } ?>
             </tbody>
         </table>
      </div>
