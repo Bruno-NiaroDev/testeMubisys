@@ -14,3 +14,7 @@ body{
 .statusLogado {
     color: red;
 }
+
+.navStyle  * {
+    color: white !important;
+}
