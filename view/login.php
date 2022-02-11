@@ -13,31 +13,30 @@
         <div class="jumbotron  loginConteiner center" >
             <h2><i class="fas fa-vial"></i> Bem vindo ao meu teste</h2>
             <p><i class="fa-solid fa-briefcase"></i>: Full Stack PHP Pleno</p>
-            <form>
+            <form method="post" action="../controller/usuario.php?acao=login">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="E-mail">
+                    <input type="text" class="form-control" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Senha">
+                    <input type="password" class="form-control" name="senha" placeholder="Senha" required>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-success btn-block"><i class="fa-solid fa-door-open"></i> Entrar</button>
+                        <button type="submit" class="btn btn-success btn-block"><i class="fa-solid fa-door-open"></i> Entrar</button>
                     </div>
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary btn-block"><i class="fa-solid fa-face-frown"></i> Esqueci minha senha</button>
+                        <button type="reset" class="btn btn-primary btn-block"><i class="fa-solid fa-face-frown"></i> Esqueci minha senha</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
     <?php include "../assets/js/jsInclude.php"; ?>
 </body>
 </html>
