@@ -61,7 +61,6 @@ class Usuario {
               "id" => $id,
               "nome" => $nome,
               "email" => $email,
-              "cpf" => $cpf
             );
             
             array_push($return_arr["data"], $return_item);
@@ -143,6 +142,27 @@ class Usuario {
             return false;
         }
 
+    }
+
+    public function validaToken($token){
+
+        try {
+
+            $sqlValidToken = "SELECT token FROM usuario WHERE token = '$token';";
+
+            $result = $this->conn->prepare($sqlValidToken);
+
+            $result->execute();
+
+            if($result->rowCount()>0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 
     private function notInjection ($verificado){
