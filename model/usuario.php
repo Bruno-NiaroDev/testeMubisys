@@ -111,8 +111,6 @@ class Usuario {
 
                 return true;
             }else{
-                echo "nenhum registro.";
-                die();
                 return false;
             }
             
