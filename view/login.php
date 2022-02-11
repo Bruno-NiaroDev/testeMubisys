@@ -10,7 +10,7 @@
 </head>
 <body >
     <div class="container">
-        <div class="jumbotron  loginConteiner center" >
+        <div class="jumbotron  loginConteiner center bg-info" >
             <h2><i class="fas fa-vial"></i> Bem vindo ao meu teste</h2>
             <p><i class="fa-solid fa-briefcase"></i>: Full Stack PHP Pleno</p>
             <form method="post" action="../controller/usuario.php?acao=login">
