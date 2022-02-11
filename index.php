@@ -1,1 +1,5 @@
-<?php header('Location: view/login.php'); ?>
+<?php 
+    session_start();
+    session_destroy();
+    header('Location: view/login.php'); 
+?>
