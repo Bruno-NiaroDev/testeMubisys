@@ -17,7 +17,7 @@ class Usuario {
 
         $nome = $this->notInjection($nome);
         $email = $this->notInjection($email);
-        $senha = $this->notInjection($senha);
+        $senha = $senha;
 
         try {
 
@@ -39,7 +39,7 @@ class Usuario {
 
     }
 
-    public function listar(){
+    public function listar() {
         $sqlListarUsuario = "SELECT id, nome, email FROM usuario;";
     
         $result = $this->conn->prepare($sqlListarUsuario);
@@ -75,8 +75,7 @@ class Usuario {
         }
     
         return $return_arr;
-    
-      }
+    }
 
     public function geraToken($dadosUsuario) {
 
