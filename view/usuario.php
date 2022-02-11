@@ -25,20 +25,9 @@
     <?php include "../assets/css/cssInclude.php"; ?>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-info navStyle">
-        <span class="navbar-brand">Bem Vindo <b><?php echo $_SESSION['dadosUsuario']['nome']; ?></b></span>
-        <div class="form-inline">
-            <a href="../index.php" ><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
-        </div>
-    </nav>
+    <?php include './component/navbar.php'; ?>
     <div class="container">
         <br>
-        <div class="alert alert-danger" id="alertError" style="display: none">
-            <strong>Ops!</strong> <span id="msgErro"></span>
-        </div>
-        <div class="alert alert-success" id="alertSuccess" style="display: none">
-            <strong>Parabens!</strong> <span id="msgSucess"></span>
-        </div>
         <div class="row">
             <div class="col-sm-8">
                 <h2>Consulta de Usuários</h2>
