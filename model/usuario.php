@@ -120,6 +120,31 @@ class Usuario {
 
     }
 
+    public function buscar($idUsuario){
+
+        $idUsuario = $this->notInjection($idUsuario);
+
+        try {
+
+            $sqlCheckExistUser = "SELECT id, nome, email, token FROM usuario WHERE id = $idUsuario";
+
+            $result = $this->conn->prepare($sqlCheckExistUser);
+
+            $result->execute();
+
+            if($result->rowCount()>0){    
+
+                return $result->fetchAll()[0];;
+            }else{
+                return false;
+            }
+            
+        } catch (\Throwable $th) {
+            return false;
+        }
+
+    }
+
     private function notInjection ($verificado){
     
         $verificado = str_replace('"',"",$verificado);

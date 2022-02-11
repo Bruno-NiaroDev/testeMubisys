@@ -57,18 +57,50 @@
                         </div>
                     </div>
                 <?php } else { foreach($listaUsuarios['data'] as $usuario ) { ?>
-                    <tr <?php echo $_SESSION['dadosUsuario']['id'] == $usuario['id'] ? 'class="statusLogado"' : '' ?>>
-                        <td><?php echo $usuario['nome'] ?></td>
-                        <td><?php echo $usuario['email'] ?></td>
-                        <td> 
-                        <a href="formUsuario.php?id=<?php echo $usuario['id'] ?>">Ver</a>
+                    <tr <?php echo $_SESSION['dadosUsuario']['id'] == $usuario['id'] ? 'class="statusLogado"' : ''; ?>>
+                        <td><?php echo $usuario['nome']; ?></td>
+                        <td><?php echo $usuario['email']; ?></td>
+                        <td>
+                            <button id="<?php echo $usuario['id']; ?>" type="button" class="moreInfo btn btn-link" >
+                                <i class="fas fa-search-plus"></i> Ver
+                            </button>
                         </td>
                     </tr>
                 <?php } } ?>
             </tbody>
         </table>
-     </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detalhes: </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php include "../assets/js/jsInclude.php"; ?>
+    <script>
+        $(document).ready(function(){
+
+            $('.moreInfo').click(function(){
+                var userId = $(this).attr('id');
+                
+                $.ajax({
+                url: 'component/viewUserData.php?idUsuario='+userId,
+                type: 'get',
+                success: function(response){ 
+                    $('.modal-body').html(response);
+                    $('#myModal').modal('show')
+                }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
