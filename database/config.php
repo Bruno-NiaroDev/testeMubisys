@@ -17,7 +17,11 @@ class Database{
             $this->conn = new PDO("mysql:host=".$this->host.";dbname=".$this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
         }catch(PDOException $exception){
-            echo "Erro ao conectar com o banco de dados.";
+            echo json_encode([
+                'code' => 500,
+                'message' => 'Falha ao tentar comunicar com o banco de dados.'
+            ]);
+            die();
         }
         error_reporting(E_ERROR | E_PARSE);
         return $this->conn;
