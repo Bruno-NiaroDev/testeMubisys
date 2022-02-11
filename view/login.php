@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <?php include "../assets/css/cssInclude.php"; ?>
-    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body >
     <div class="container">
         <div class="jumbotron  loginConteiner center bg-info" >
             <h2><i class="fas fa-vial"></i> Bem vindo ao meu teste</h2>
             <p><i class="fa-solid fa-briefcase"></i>: Full Stack PHP Pleno</p>
-            <form method="post" action="../controller/usuario.php?acao=login">
+            <form method="post" action="../controller/usuario.php?acao=logar">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
