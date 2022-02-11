@@ -10,3 +10,11 @@ CREATE TABLE IF NOT EXISTS mobi_teste.usuario (
   token LONGTEXT NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO usuario (nome,email,senha,token) VALUES
+  (
+    'Bruno Araujo', 
+    'bruno.absilva3@gmail.com', 
+    MD5('102030'), 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJsb2NhbGhvc3QiLCJub21lIjoiQnJ1bm8gQXJhdWpvIiwiZW1haWwiOiJicnVub2Fic2lsdmEzQGdtYWlsY29tIn0=.jt6m9arFYQjbNtBJ1xDTxI+J83fubcGcLFqgUdQvfRA='
+  );
