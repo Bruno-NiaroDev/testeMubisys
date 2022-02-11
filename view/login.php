@@ -13,6 +13,9 @@
             <h2><i class="fas fa-vial"></i> Bem vindo ao meu teste</h2>
             <p><i class="fa-solid fa-briefcase"></i>: Full Stack PHP Pleno</p>
             <form method="post" action="../controller/usuario.php?acao=logar">
+                <div class="alert alert-danger" id="alertError" style="display: none">
+                    <strong>Ops!</strong> <span id="msgErro"></span>
+                </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
@@ -21,7 +24,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                     </div>
                     <input type="password" class="form-control" name="senha" placeholder="Senha" required>
                 </div>
@@ -37,5 +40,11 @@
         </div>
     </div>
     <?php include "../assets/js/jsInclude.php"; ?>
+    <script>
+        <?php if($_GET['erro'] == '1'){?>
+            $("#alertError").fadeIn(3000);
+            $("#msgErro").text("Usuário ou senha incorretos!")
+        <?php } ?>
+    </script>
 </body>
 </html>
